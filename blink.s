@@ -1,15 +1,17 @@
   .org $8000
+reset:
   lda #$ff
   sta $6002
 
   lda #$55
   sta $6000
 
-  lda #$aa
+loop:
+  ror
   sta $6000
 
-  jmp $8005
+  jmp loop
 
   .org $fffc
-  .word $8000
+  .word reset
   .word $0000
