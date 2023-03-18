@@ -26,47 +26,18 @@ reset:
   lda #%00000001 ; Clear LCD display
   jsr lcd_instruction
 
-  lda #"H"
+  ldx #0
+print:
+  lda message,x
+  beq loop
   jsr print_char
-
-  lda #"e"
-  jsr print_char
-
-  lda #"l"
-  jsr print_char
-
-  lda #"l"
-  jsr print_char
-
-  lda #"o"
-  jsr print_char
-
-  lda #","
-  jsr print_char
-
-  lda #" "
-  jsr print_char
-
-  lda #"w"
-  jsr print_char
-
-  lda #"o"
-  jsr print_char
-
-  lda #"r"
-  jsr print_char
-
-  lda #"l"
-  jsr print_char
-
-  lda #"d"
-  jsr print_char
-
-  lda #"!"
-  jsr print_char
+  inx
+  jmp print
 
 loop:
   jmp loop
+
+message: .asciiz "Hello, world!"
 
 lcd_wait:
   pha
